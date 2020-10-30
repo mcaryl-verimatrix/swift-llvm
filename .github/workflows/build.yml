@@ -3,24 +3,28 @@ name: Build Swift-LLVM-Packages
 on: push
 
 jobs:
-  macos:
+  older-versions:
     runs-on: macOS-latest
     steps:
       - name: Checkout legacy llvm
         uses: actions/checkout@v2
         with:
-          path: legacy
           repository: apple/swift-llvm
           ref: swift-4.0-branch
-      - name: Checkout llvm project
+      - name: Configure
+        run: cmake -Bbuild -DLLVM_TARGETS_TO_BUILD='X86;AArch64;ARM' -DLLVM_INCLUDE_TESTS=0 -DLLVM_INCLUDE_DOCS=0 -DLLVM_INCLUDE_EXAMPLES=0 -DLLVM_INCLUDE_GO_TESTS=0 -DLLVM_ENABLE_OCAMLDOC=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=build/install
+      - name: build
+        run: cmake --build build
+
+  current-versions:
+    runs-on: macOS-latest
+    steps:
+      - name: checkout
         uses: actions/checkout@v2
         with:
-          path: llvm
-          repository: apple/llvm-project
+          respository: apple/llvm-project
+          ref: swift/swift-5.2-branch
       - name: Configure
-        run: |
-          cd legacy
-          cmake -Bbuild -DLLVM_TARGETS_TO_BUILD='X86;AArch64;ARM' -DLLVM_INCLUDE_TESTS=0 -DLLVM_INCLUDE_DOCS=0 -DLLVM_INCLUDE_EXAMPLES=0 -DLLVM_INCLUDE_GO_TESTS=0 -DLLVM_ENABLE_OCAMLDOC=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=build/install
+        run: cmake -Bbuild -DLLVM_TARGETS_TO_BUILD='X86;AArch64;ARM' -DLLVM_INCLUDE_TESTS=0 -DLLVM_INCLUDE_DOCS=0 -DLLVM_INCLUDE_EXAMPLES=0 -DLLVM_INCLUDE_GO_TESTS=0 -DLLVM_ENABLE_OCAMLDOC=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=build/install llvm
       - name: build
-        run:
-          cmake --build build
+        run: cmake --build build
