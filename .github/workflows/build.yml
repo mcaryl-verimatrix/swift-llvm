@@ -10,10 +10,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: legacy
+          repository: https://github.com/apple/swift-llvm.git
       - name: Checkout llvm project
         uses: actions/checkout@v2
         with:
           path: llvm
+          repository: https://github.com/apple/llvm-project.git
       - name: Configure
         run: |
           cd legacy
