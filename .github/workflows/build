@@ -1,0 +1,3 @@
+name: Build Swift-LLVM-Packages
+
+on: push

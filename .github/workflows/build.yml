@@ -1,0 +1,24 @@
+name: Build Swift-LLVM-Packages
+
+on: push
+
+jobs:
+  macos:
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout legacy llvm
+        uses: actions/checkout@v2
+        with:
+          path: legacy
+      - name: Checkout llvm project
+        uses: actions/checkout@v2
+        with:
+          path: llvm
+      - name: Configure
+        run: |
+          cd legacy
+          git checkout swift-4.0-branch
+          cmake -Bbuild -DLLVM_TARGETS_TO_BUILD='X86;AArch64;ARM' -DLLVM_INCLUDE_TESTS=0 -DLLVM_INCLUDE_DOCS=0 -DLLVM_INCLUDE_EXAMPLES=0 -DLLVM_INCLUDE_GO_TESTS=0 -DLLVM_ENABLE_OCAMLDOC=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=build/install
+      - name: build
+        run:
+          cmake --build build
