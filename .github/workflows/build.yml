@@ -151,7 +151,10 @@ jobs:
       - name: Configure
         run: cmake -Bbuild -DLLVM_TARGETS_TO_BUILD='X86;AArch64;ARM' -DLLVM_INCLUDE_TESTS=0 -DLLVM_INCLUDE_DOCS=0 -DLLVM_INCLUDE_EXAMPLES=0 -DLLVM_INCLUDE_GO_TESTS=0 -DLLVM_ENABLE_OCAMLDOC=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=build/install llvm
       - name: build
-        run: cmake --build build
+        run: |
+          cmake --build build
+          cd build
+          make install
       - name: package
         uses: actions/upload-artifact@v2
         with:
@@ -176,7 +179,10 @@ jobs:
       - name: Configure
         run: cmake -Bbuild -DLLVM_TARGETS_TO_BUILD='X86;AArch64;ARM' -DLLVM_INCLUDE_TESTS=0 -DLLVM_INCLUDE_DOCS=0 -DLLVM_INCLUDE_EXAMPLES=0 -DLLVM_INCLUDE_GO_TESTS=0 -DLLVM_ENABLE_OCAMLDOC=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=build/install llvm
       - name: build
-        run: cmake --build build
+        run: |
+          cmake --build build
+          cd build
+          make install
       - name: package
         uses: actions/upload-artifact@v2
         with:
