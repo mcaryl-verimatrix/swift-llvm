@@ -3,7 +3,7 @@ name: Build Swift-LLVM-Packages
 on: push
 
 jobs:
-  4.0:
+  FourOH:
     runs-on: macOS-latest
     steps:
       - name: Checkout legacy llvm
@@ -30,7 +30,7 @@ jobs:
             build/install/**/llvm-dis
             build/install/**/llvm-config
 
-  4.1:
+  FourOne:
     runs-on: macOS-latest
     steps:
       - name: Checkout legacy llvm
@@ -57,7 +57,7 @@ jobs:
             build/install/**/llvm-dis
             build/install/**/llvm-config
 
-  4.2:
+  FourTwo:
     runs-on: macOS-latest
     steps:
       - name: Checkout legacy llvm
@@ -85,7 +85,7 @@ jobs:
             build/install/**/llvm-config
 
 
-  5.0.1:
+  FiveOHOne:
     runs-on: macOS-latest
     steps:
       - name: Checkout legacy llvm
@@ -112,7 +112,7 @@ jobs:
             build/install/**/llvm-dis
             build/install/**/llvm-config
 
-  5.1:
+  FiveOne:
     runs-on: macOS-latest
     steps:
       - name: Checkout legacy llvm
@@ -140,7 +140,7 @@ jobs:
             build/install/**/llvm-config
 
 
-  5.2.4:
+  FiveTwoFour:
     runs-on: macOS-latest
     steps:
       - name: checkout
@@ -165,7 +165,7 @@ jobs:
             build/install/**/llvm-config
 
 
-  5.3:
+  FiveThree:
     runs-on: macOS-latest
     steps:
       - name: checkout
