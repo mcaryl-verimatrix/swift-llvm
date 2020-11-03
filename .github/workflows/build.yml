@@ -20,4 +20,4 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake ..
+        cmake .. -DPython_ROOT_DIR=${env:pythonLocal}
