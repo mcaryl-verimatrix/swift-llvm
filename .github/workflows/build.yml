@@ -20,4 +20,4 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .. -G "Visual Studio 16 2019" -A x64  -DPython3_ROOT_DIR=${env:pythonLocation} -DPython3_FIND_STRATEGY=LOCATION
+        cmake .. -DPython3_ROOT_DIR=${env:pythonLocation}
