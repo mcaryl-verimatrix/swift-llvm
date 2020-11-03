@@ -20,4 +20,4 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake ../.. -DPython3_ROOT_DIR=${env:pythonLocal} -DPython3_FIND_STRATEGY=LOCATION -G "Visual Studio 16 2019" -A x64
+        cmake D:\a\swift-llvm\swift-llvm -DPython3_ROOT_DIR=${env:pythonLocal} -DPython3_FIND_STRATEGY=LOCATION -G "Visual Studio 16 2019" -A x64
